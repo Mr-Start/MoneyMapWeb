@@ -58,21 +58,21 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 const ChartPieDonutText = () => {
-  const totalVisitors = React.useMemo(() => {
+  const totalMoney = React.useMemo(() => {
     return chartData.reduce((acc, curr) => acc + curr.money, 0);
   }, []);
 
   return (
-    <Card className="flex flex-col max-w-[30rem] bg-secundary p-8">
+    <Card className="flex flex-col w-full bg-secundary p-8">
       <CardHeader className="items-center p-0">
         <h1 className="text-primary text-2xl font-bold">Gastos</h1>
       </CardHeader>
-      <CardContent className="flex-1 p-0">
+      <CardContent className="flex-1 p-0 w-full">
         <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square w-[21rem]"
         >
-          <PieChart>
+          <PieChart className="">
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
@@ -81,7 +81,7 @@ const ChartPieDonutText = () => {
               data={chartData}
               dataKey="money"
               nameKey="category"
-              innerRadius={85}
+              innerRadius={80}
               strokeWidth={3}
             >
               <Label
@@ -99,7 +99,10 @@ const ChartPieDonutText = () => {
                           y={viewBox.cy}
                           className="fill-foreground text-xl font-bold"
                         >
-                          R${totalVisitors.toLocaleString()}
+                          {totalMoney.toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}
                         </tspan>
                       </text>
                     );

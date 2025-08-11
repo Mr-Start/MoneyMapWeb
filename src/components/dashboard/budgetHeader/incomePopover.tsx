@@ -9,6 +9,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
+import { useIncome } from "@/context/useIncome";
 import { Check, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 
@@ -19,11 +20,20 @@ const fakeData = [
 
 export function IncomePopover() {
   const [incomeData, setIncomeData] = useState(fakeData);
+  const { income, setIncome } = useIncome();
 
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline">Open popover</Button>
+        <Button variant="outline" className="relative">
+          <span className="absolute -top-6 left-0 text-xs text-primary rounded-full">
+            Renda do mês
+          </span>
+          {income.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </Button>
       </PopoverTrigger>
       <PopoverContent className="w-96">
         <div className="flex flex-col gap-4">

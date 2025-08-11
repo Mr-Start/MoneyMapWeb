@@ -51,16 +51,26 @@ const chartConfig = {
 
 const PieChartSlider = () => {
   const { chartData } = useGoal();
+  const [totalPercentage, setTotalPercentage] = React.useState(0);
+  const [subTitle, setSubTitle] = React.useState(0);
 
-  // const totalPercentage = React.useMemo(() => {
-  //   return chartData.reduce((acc, curr) => acc + curr.percentage, 0);
-  // }, []);
-  const totalPercentage = 100;
+  React.useEffect(() => {
+    setTotalPercentage(
+      chartData.reduce((acc, curr) => acc + curr.percentage, 0)
+    );
+  }, [chartData]);
 
   return (
     <Card className="flex flex-col max-w-[30rem] bg-secundary p-8">
       <CardHeader className="items-center p-0">
         <h1 className="text-primary text-2xl font-bold">Gastos</h1>
+        {totalPercentage == 100 ? (
+          <span className="text-muted-foreground text-center"></span>
+        ) : (
+          <span className="text-red-400 text-center">
+            A porcentagem total deve ser igual a 100%
+          </span>
+        )}
       </CardHeader>
       <CardContent className="flex-1 p-0">
         <ChartContainer
@@ -76,7 +86,7 @@ const PieChartSlider = () => {
               data={chartData}
               dataKey="percentage"
               nameKey="category"
-              innerRadius={85}
+              innerRadius={80}
               strokeWidth={3}
             >
               <Label
@@ -92,9 +102,16 @@ const PieChartSlider = () => {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="fill-foreground text-xl font-bold"
+                          className="fill-foreground text-xl font-bold text-center"
                         >
-                          R${totalPercentage.toLocaleString()}
+                          {totalPercentage}%
+                        </tspan>
+                        <tspan
+                          x={viewBox.cx}
+                          y={(viewBox.cy || 0) + 24}
+                          className="fill-muted-foreground"
+                        >
+                          Total
                         </tspan>
                       </text>
                     );

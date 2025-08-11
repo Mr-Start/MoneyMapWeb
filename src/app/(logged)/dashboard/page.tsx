@@ -12,7 +12,7 @@ import { usePage } from "@/context/usePage";
 
 export default function DashboardPage() {
   const { selectedPage } = usePage();
-
+  console.log("Selected Page:", selectedPage);
   return (
     <div className="flex flex-col h-full self-center justify-self-center w-full">
       {selectedPage === "Minhas Metas" ? (
@@ -32,10 +32,18 @@ export default function DashboardPage() {
         <div className="h-full w-full flex flex-col gap-8 items-center mt-24">
           {/* <ModeToggle /> */}
           <BudgetHeader />
-          <div className="flex gap-4 w-full h-full">
-            <ChartPieDonutText />
-            <OutcomeResumed />
-            <CategoryCard />
+          <div className="flex gap-4 w-full h-full 2xl:flex-row flex-col">
+            <div className="max-w-3/4 h-auto flex flex-row gap-4 w-full max-2xl:max-w-full max-xl:flex-col">
+              <div className="max-w-1/3  flex w-full max-2xl:max-w-full">
+                <ChartPieDonutText />
+              </div>
+              <div className="max-w-2/3  flex w-full max-2xl:max-w-full">
+                <OutcomeResumed />
+              </div>
+            </div>
+            <div className="max-w-1/4 flex w-full max-2xl:max-w-full">
+              <CategoryCard />
+            </div>
           </div>
           <OutcomeHandle />
         </div>

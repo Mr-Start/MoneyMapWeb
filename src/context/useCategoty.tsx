@@ -17,6 +17,15 @@ export const categoryTranslations = {
   STUDY: "Conhecimento",
 };
 
+export const allCategories: Category[] = [
+  "FIXED",
+  "CONFORT",
+  "GOALS",
+  "JOY",
+  "INVESTMENT",
+  "STUDY",
+];
+
 type categoryStore = {
   selectedCategory: Category;
   setSelectedCategory: (category: Category) => void;
