@@ -52,7 +52,6 @@ const chartConfig = {
 const PieChartSlider = () => {
   const { chartData } = useGoal();
   const [totalPercentage, setTotalPercentage] = React.useState(0);
-  const [subTitle, setSubTitle] = React.useState(0);
 
   React.useEffect(() => {
     setTotalPercentage(
@@ -63,7 +62,7 @@ const PieChartSlider = () => {
   return (
     <Card className="flex flex-col max-w-[30rem] bg-secundary p-8">
       <CardHeader className="items-center p-0">
-        <h1 className="text-primary text-2xl font-bold">Gastos</h1>
+        <h1 className="text-primary text-2xl font-bold">Metas</h1>
         {totalPercentage == 100 ? (
           <span className="text-muted-foreground text-center"></span>
         ) : (
