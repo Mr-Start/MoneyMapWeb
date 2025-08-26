@@ -37,7 +37,6 @@ const CategorySlider = () => {
             sliderClassname={`data-[orientation=horizontal]:h-3`}
             className={`[&_[data-slot=slider-track]]:bg-secondary [&_[data-slot=slider-range]]:bg-${value.color} [&_[data-slot=slider-thumb]]:bg-${value.color} [&_[data-slot=slider-thumb]]:border-secondary`}
           />
-
         </div>
       ))}
 
@@ -51,9 +50,7 @@ const CategorySlider = () => {
             Salvar
           </Button>
         ) : (
-          <Button className="cursor-pointer">
-            Salvar
-          </Button>
+          <Button className="cursor-pointer">Salvar</Button>
         )}
       </div>
     </div>
